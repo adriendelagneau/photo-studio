@@ -62,8 +62,8 @@ const splitedTitle = document.querySelectorAll(".splited-title"); // All element
 gsap.timeline({
   onComplete: typeEffect, // Call the typeEffect function when the timeline completes
 })
-.fromTo(splitedName, { opacity: 0 }, { opacity: 1, stagger: 0.15, delay: 0.3 }) // Fade in 'splited-name' elements
-.fromTo(splitedTitle, { opacity: 0 }, { opacity: 1, stagger: 0.15, delay: 0.3 }); // Fade in 'splited-title' elements
+  .fromTo(splitedName, { opacity: 0 }, { opacity: 1, stagger: 0.15, delay: 0.3 }) // Fade in 'splited-name' elements
+  .fromTo(splitedTitle, { opacity: 0 }, { opacity: 1, stagger: 0.15, delay: 0.3 }); // Fade in 'splited-title' elements
 
 
 
@@ -141,4 +141,37 @@ const observer = new IntersectionObserver(handleIntersect, options);
 
 presentationPart.forEach(container => {
   observer.observe(container);
+});
+
+
+
+/*
+  ****** Fotter ********** 
+*/
+
+// Select all elements with the class "right-part div"
+const underlineFooterSpans = document.querySelectorAll('h4 span');
+
+// Options for the Intersection Observer
+let options2 = {
+  root: null,
+  rootMargin: "-150px 0px",
+  threshold: 0.5,
+};
+
+// Function to handle intersection of elements with the viewport
+const handleIntersect2 = (entries) => {
+  entries.forEach((e) => {
+    // If an element is at least 50% visible, add class
+    if (e.isIntersecting) {
+      e.target.classList.add('visible')
+    }
+  });
+};
+
+// Create an Intersection Observer and observe "right-part div" elements
+const observer2 = new IntersectionObserver(handleIntersect2, options2);
+
+underlineFooterSpans.forEach(container => {
+  observer2.observe(container);
 });
