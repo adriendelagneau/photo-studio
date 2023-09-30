@@ -7,9 +7,9 @@ import { convertDivToSpans } from './helper.js';
 gsap.registerPlugin(ScrollTrigger);
 
 
-//
-// Landing
-//
+/*
+  ****** Landing ********** 
+*/
 
 // Define words with classes for the typing effect
 const wordsWithClasses = [
@@ -64,3 +64,74 @@ gsap.timeline({
 })
 .fromTo(splitedName, { opacity: 0 }, { opacity: 1, stagger: 0.15, delay: 0.3 }) // Fade in 'splited-name' elements
 .fromTo(splitedTitle, { opacity: 0 }, { opacity: 1, stagger: 0.15, delay: 0.3 }); // Fade in 'splited-title' elements
+
+
+
+
+
+//
+// Presentation
+//
+
+//-- toggle grayscale
+const skexContainers = document.querySelectorAll(".skew-container")
+
+function toggleGrayscale(event) {
+  const img = event.currentTarget.querySelector(".skew-container img");
+
+  if (img.classList.contains("grayscale")) {
+    img.classList.remove("grayscale");
+    img.classList.add("no-grayscale");
+  } else {
+    img.classList.remove("no-grayscale");
+    img.classList.add("grayscale");
+  }
+}
+
+skexContainers.forEach((c) => {
+    c.addEventListener("mouseenter", toggleGrayscale);
+    c.addEventListener("mouseleave", toggleGrayscale);
+  });
+  
+
+//-- scroll skew effect
+let proxy = { skew: 0 },
+skewSetter = gsap.quickSetter(".skew-container", "skewY", "deg"), // fast
+clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees. 
+
+ScrollTrigger.create({
+onUpdate: (self) => {
+  let skew = clamp(self.getVelocity() / -300);
+  
+  if (Math.abs(skew) > Math.abs(proxy.skew)) {
+    proxy.skew = skew;
+    gsap.to(proxy, {skew: 0, duration: 0.8, ease: "power3", overwrite: true, onUpdate: () => skewSetter(proxy.skew)});
+  }
+}
+});
+
+gsap.set(".col", { transformOrigin: "right center", force3D: true });
+
+//-- Text observer
+const presentationPart = document.querySelectorAll('.right-part div')
+
+let options = {
+  root: null,
+  rootMargin: "0px 0px",
+  threshold: 0.5,
+};
+  
+const handleIntersect = (entries) => {
+
+entries.forEach((e) => {
+  if (e.isIntersecting) {
+    e.target.style.opacity = 1
+  }
+});
+}
+
+const observer = new IntersectionObserver(handleIntersect, options);
+
+presentationPart.forEach(container => {
+  observer.observe(container)
+})
