@@ -139,7 +139,7 @@ h1 {
 .right-part {
   flex: 1;
   color: aliceblue;
-  padding-right: 200px;
+  padding-right: 10%;
   font-size: 26px;
   line-height: 35px;
 }
@@ -161,10 +161,56 @@ h3 {
   -o-transition: 0.7s;
 }
 
-/*  Reponsif design */
+
+/*------------------------------------------*/
+/*----------- Responsif design -------------*/
+/*------------------------------------------*/
+
+@media (max-width: 1536){
+  
+  /* Presentation */
+  .right-part {
+    padding-right: 5%;
+    font-size: 24px;
+  }
+}
+
+
+@media (max-width: 1280px){
+  
+  /* Presentation */
+  .right-part {
+    padding-right: 2%;
+    font-size: 22px;
+  }
+}
+
+
+@media (max-width: 1024px){
+
+  /* Presentation */
+  .presentation {
+    flex-direction: column-reverse;
+  }
+
+  .right-part {
+    width: 600px;
+    margin: 0 auto;
+  }
+
+  .right-part > div {
+    height: 300px;
+  }
+
+  h3{
+    font-size: 26px;
+  }
+}
+
 
 @media (max-width: 768px) {
-  
+
+  /* Landing */
   h1,
   #landing p,
   .typed-text{
@@ -173,9 +219,9 @@ h3 {
 }
 
 
-
 @media (max-width: 640px) {
   
+  /* Landing */
   h1 {
     font-size: 35px;
   }
@@ -183,5 +229,20 @@ h3 {
   #landing p,
   .typed-text{
     font-size: 42px;
+  }
+
+
+  /* Presentation */
+  .right-part {
+    width: 350px;
+    margin: 0 auto;
+  }
+
+  .right-part > div {
+    height: 400px;
+  }
+
+  .left-part {
+    flex-direction: column;
   }
 }
