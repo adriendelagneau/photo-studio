@@ -285,7 +285,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
 }
 
 .brand-logo img {
@@ -431,7 +430,7 @@ nav li:hover {
 @media (max-width: 1024px) {
 
   /* Presentation */
-  .presentation {
+  #presentation {
     flex-direction: column-reverse;
   }
 
