@@ -160,3 +160,28 @@ h3 {
   -ms-transition: 0.7s;
   -o-transition: 0.7s;
 }
+
+/*  Reponsif design */
+
+@media (max-width: 768px) {
+  
+  h1,
+  #landing p,
+  .typed-text{
+    font-size: 52px;
+  }
+}
+
+
+
+@media (max-width: 640px) {
+  
+  h1 {
+    font-size: 35px;
+  }
+  
+  #landing p,
+  .typed-text{
+    font-size: 42px;
+  }
+}
