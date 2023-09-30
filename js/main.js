@@ -67,18 +67,18 @@ gsap.timeline({
 
 
 
+/*
+  ****** Presentation ********** 
+*/
 
+// Select all elements with the class "skew-container"
+const skexContainers = document.querySelectorAll(".skew-container");
 
-//
-// Presentation
-//
-
-//-- toggle grayscale
-const skexContainers = document.querySelectorAll(".skew-container")
-
+// Function to toggle grayscale effect on images within "skew-container"
 function toggleGrayscale(event) {
   const img = event.currentTarget.querySelector(".skew-container img");
 
+  // Toggle between grayscale and color classes
   if (img.classList.contains("grayscale")) {
     img.classList.remove("grayscale");
     img.classList.add("no-grayscale");
@@ -88,50 +88,57 @@ function toggleGrayscale(event) {
   }
 }
 
+// Add mouse enter and leave event listeners to apply grayscale toggle
 skexContainers.forEach((c) => {
-    c.addEventListener("mouseenter", toggleGrayscale);
-    c.addEventListener("mouseleave", toggleGrayscale);
-  });
-  
-
-//-- scroll skew effect
-let proxy = { skew: 0 },
-skewSetter = gsap.quickSetter(".skew-container", "skewY", "deg"), // fast
-clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees. 
-
-ScrollTrigger.create({
-onUpdate: (self) => {
-  let skew = clamp(self.getVelocity() / -300);
-  
-  if (Math.abs(skew) > Math.abs(proxy.skew)) {
-    proxy.skew = skew;
-    gsap.to(proxy, {skew: 0, duration: 0.8, ease: "power3", overwrite: true, onUpdate: () => skewSetter(proxy.skew)});
-  }
-}
+  c.addEventListener("mouseenter", toggleGrayscale);
+  c.addEventListener("mouseleave", toggleGrayscale);
 });
 
+// Define variables for scroll skew effect
+let proxy = { skew: 0 },
+  skewSetter = gsap.quickSetter(".skew-container", "skewY", "deg"), // Fast skew updates
+  clamp = gsap.utils.clamp(-20, 20); // Ensure skew doesn't exceed -20 to 20 degrees
+
+// Create a ScrollTrigger to control the skew effect
+ScrollTrigger.create({
+  onUpdate: (self) => {
+    // Calculate skew based on scroll velocity and clamp it
+    let skew = clamp(self.getVelocity() / -300);
+
+    // Update proxy object and apply skew animation
+    if (Math.abs(skew) > Math.abs(proxy.skew)) {
+      proxy.skew = skew;
+      gsap.to(proxy, { skew: 0, duration: 0.8, ease: "power3", overwrite: true, onUpdate: () => skewSetter(proxy.skew) });
+    }
+  }
+});
+
+// Set the transform origin for elements with the class "col"
 gsap.set(".col", { transformOrigin: "right center", force3D: true });
 
-//-- Text observer
-const presentationPart = document.querySelectorAll('.right-part div')
+// Select all elements with the class "right-part div"
+const presentationPart = document.querySelectorAll('.right-part div');
 
+// Options for the Intersection Observer
 let options = {
   root: null,
   rootMargin: "0px 0px",
   threshold: 0.5,
 };
-  
+
+// Function to handle intersection of elements with the viewport
 const handleIntersect = (entries) => {
+  entries.forEach((e) => {
+    // If an element is at least 50% visible, set its opacity to 1
+    if (e.isIntersecting) {
+      e.target.style.opacity = 1;
+    }
+  });
+};
 
-entries.forEach((e) => {
-  if (e.isIntersecting) {
-    e.target.style.opacity = 1
-  }
-});
-}
-
+// Create an Intersection Observer and observe "right-part div" elements
 const observer = new IntersectionObserver(handleIntersect, options);
 
 presentationPart.forEach(container => {
-  observer.observe(container)
-})
+  observer.observe(container);
+});
