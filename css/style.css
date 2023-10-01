@@ -8,7 +8,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   background: #0c0c0c;
   overflow-x: hidden;
 }
@@ -577,7 +576,7 @@ nav li:hover {
 
   /* Footer*/
   .row {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .footer-col {

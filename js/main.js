@@ -1,14 +1,18 @@
 // Import the necessary modules
 import gsap, { Power2 } from 'gsap'; // GreenSock Animation Platform
 import ScrollTrigger from 'gsap/src/ScrollTrigger';
-//import Lenis from '@studio-freight/lenis'
+import Lenis from '@studio-freight/lenis'
 import { photosMode } from './data.js';
 
 import { convertDivToSpans, toggleGrayscale } from './helper.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
+
 /*
+  ****** Smooth scroll ********** 
+*/
+
 const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
@@ -22,7 +26,7 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-*/
+
 /*
   ****** Landing ********** 
 */
