@@ -6,7 +6,7 @@
              (> <)
 
 
-objectif: Making a photograph website using vanilla stack using scroll events
+objectif: Making a photograph website with vanilla stack using scroll events
 
 Stack:
 
