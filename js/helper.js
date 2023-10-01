@@ -14,4 +14,22 @@ export const convertDivToSpans = (element, spanClass) => {
       .join("");
   
     return element;
+}
+  
+
+
+//
+// Grayscale toggle
+//
+export const toggleGrayscale = (event, selector) => {
+  const img = event.currentTarget.querySelector(selector);
+  
+  // Toggle between grayscale and color classes
+  if (img.classList.contains("grayscale")) {
+      img.classList.remove("grayscale");
+      img.classList.add("no-grayscale");
+  } else {
+      img.classList.remove("no-grayscale");
+      img.classList.add("grayscale");
   }
+}

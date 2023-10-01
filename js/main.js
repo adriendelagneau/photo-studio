@@ -1,12 +1,28 @@
 // Import the necessary modules
 import gsap, { Power2 } from 'gsap'; // GreenSock Animation Platform
 import ScrollTrigger from 'gsap/src/ScrollTrigger';
+//import Lenis from '@studio-freight/lenis'
+import { photosMode } from './data.js';
 
-import { convertDivToSpans } from './helper.js';
+import { convertDivToSpans, toggleGrayscale } from './helper.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/*
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+});
 
+function raf(time) {
+  lenis.raf(time);
+  ScrollTrigger.update();
+  requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+*/
 /*
   ****** Landing ********** 
 */
@@ -71,29 +87,14 @@ gsap.timeline({
   ****** Presentation ********** 
 */
 
-// Select all elements with the class "skew-container"
+// Toggle grayscale on hover
 const skexContainers = document.querySelectorAll(".skew-container");
-
-console.log()
-// Function to toggle grayscale effect on images within "skew-container"
-function toggleGrayscale(event) {
-  const img = event.currentTarget.querySelector(".skew-container img");
-
-  // Toggle between grayscale and color classes
-  if (img.classList.contains("grayscale")) {
-    img.classList.remove("grayscale");
-    img.classList.add("no-grayscale");
-  } else {
-    img.classList.remove("no-grayscale");
-    img.classList.add("grayscale");
-  }
-}
-
 // Add mouse enter and leave event listeners to apply grayscale toggle
 skexContainers.forEach((c) => {
-  c.addEventListener("mouseenter", toggleGrayscale);
-  c.addEventListener("mouseleave", toggleGrayscale);
+c.addEventListener("mouseenter", (event) => toggleGrayscale(event, ".skew-container img"));
+c.addEventListener("mouseleave", (event) => toggleGrayscale(event, ".skew-container img"));
 });
+
 
 // Define variables for scroll skew effect
 let proxy = { skew: 0 },
@@ -210,7 +211,7 @@ menuBar.reverse();
 var tl = gsap.timeline({ paused: true });
 
 tl.to('.fullpage-menu', {
-  zIndex: 100
+  zIndex: 100,
 });
 
 tl.to('.fullpage-menu', {
@@ -270,8 +271,75 @@ document.querySelectorAll('.main-menu li a').forEach((menuLink) => {
 
 
 
+/*
+  ****** Slider ********** 
+*/
+const slider = document.getElementById("slider");
 
+photosMode.forEach((data) => {
+  const card = document.createElement("div");
+  card.classList.add("card");
 
+  const img = document.createElement("img");
+  img.src = data.url;
+  img.alt = "";
+  img.classList.add("grayscale");
 
+  card.appendChild(img);
+  slider.appendChild(card);
+});
 
+const sliderContainer = document.querySelector(".sliderContainer");
+const sliderContainerWidth = sliderContainer.offsetWidth;
+const sliderWidth = slider.offsetWidth;
+const gallery = document.querySelector("#gallery");
 
+const timeline = gsap.timeline({
+  scrollTrigger: {
+    trigger: gallery,
+    pin: true,
+    start: "top top",
+    end: `300% bottom`,
+    scrub: true,
+    markers: true,
+  },
+});
+
+timeline.to(".slider", {
+  x: `${sliderContainerWidth - sliderWidth}px`,
+});
+
+// Grayscale Effect on Cards
+const cards = document.querySelectorAll('.card');
+cards.forEach((c) => {
+  c.addEventListener("mouseenter", (event) => toggleGrayscale(event, ".card img"));
+  c.addEventListener("mouseleave", (event) => toggleGrayscale(event, ".card img"));
+});
+
+// Gallery Title Animation
+const galleryTitle = document.querySelector(".gallery-title");
+convertDivToSpans(galleryTitle, "splited-gallery");
+const splitedGallerySpans = document.querySelectorAll(".splited-gallery");
+
+let t4 = gsap.timeline({ paused: true });
+t4.from(splitedGallerySpans, { opacity: 0, skewX: 40, x: -30, y: -40, stagger: 0.1 });
+
+// Intersection Observer Configuration
+let options3 = {
+  root: null,
+  rootMargin: "-150px 0px",
+  threshold: 0.5,
+};
+
+// Intersection Observer Function
+const handleIntersect3 = (entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      t4.play();
+    }
+  });
+};
+
+// Create and Observe Intersection Observer
+const observer3 = new IntersectionObserver(handleIntersect3, options3);
+observer3.observe(galleryTitle);

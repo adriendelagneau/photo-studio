@@ -308,7 +308,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 0;
   font-family: 'Cinzel', serif;
 }
@@ -403,6 +403,71 @@ nav li:hover {
   text-decoration: none;
 }
 
+
+/*----------- Horizontal scroller -------------*/
+
+#gallery {
+  width: 100%;
+  min-height: 100vh;
+  background: #0c0c0c;
+  position: relative;
+  overflow-x: auto;
+  display: flex;
+  color: rgb(245, 245, 245);
+  padding: 10vh 2vw;
+}
+
+.sliderContainer {
+  width: 80%;
+  height: 90%;
+  background: #0c0c0c;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+
+.slider {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.card {
+  width: 600px;
+  height: 100%;
+  background: #0c0c0c;
+  margin: 0 15px;
+}
+
+.slider img {
+  width: 100%;
+  height: 99%;
+  object-fit: cover;
+}
+
+.sidePart {
+  width: 300px;
+  margin: auto auto;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #e91e63;
+}
+
+.gallery-title-container {
+  font-size: 50px;
+
+}
+
+.gallery-title {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  margin-left: 100px;
+  align-items: center;
+}
+
+
 /*------------------------------------------*/
 /*----------- Responsif design -------------*/
 /*------------------------------------------*/
@@ -452,7 +517,7 @@ nav li:hover {
 @media (max-width: 768px) {
 
   /* Menu */
- 
+
   .header-nav-footer {
     padding: 30px;
   }
@@ -518,6 +583,5 @@ nav li:hover {
   .footer-col {
     margin: 30px auto;
   }
-
 
 }
