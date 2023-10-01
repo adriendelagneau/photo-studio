@@ -519,7 +519,38 @@ width: 36%;
   h3 {
     font-size: 26px;
   }
+
+
+  /* Slider */
+  #gallery{
+    flex-direction: column;
+  }
+
+
+.sidePart {
+  margin: 50px 0;
+  align-items: left;
+}
+
+  .gallery-title {
+    flex-direction: row;
+    margin-left: 50px;
+  }
+
+
+  .sliderContainer {
+    width: 95%;
+    height: 80%;
+    margin: 0 auto;
+  }
   
+  
+  .card {
+    width: 350px;
+    height: 100%;
+    background: #0c0c0c;
+    margin: 0 15px;
+  }
 }
 
 

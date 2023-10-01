@@ -272,7 +272,7 @@ const timeline = gsap.timeline({
     start: "top top",
     end: `300% bottom`,
     scrub: true,
-    markers: true,
+    //markers: true,
   },
 });
 
