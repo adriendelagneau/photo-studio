@@ -10,8 +10,8 @@ objectif: Making a photograph website with vanilla stack using scroll events
 
 Stack:
 
--html5
--css3
+-html
+-css
 -javascript
 
 -node-js@16.20.2
