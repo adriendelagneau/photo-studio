@@ -273,7 +273,7 @@ photosMode.forEach((data) => {
 const sliderContainer = document.querySelector(".sliderContainer");
 const sliderContainerWidth = sliderContainer.offsetWidth;
 const sliderWidth = slider.offsetWidth;
-const gallery = document.querySelector("#gallery");
+const gallery = document.getElementById("gallery");
 
 const timeline = gsap.timeline({
   scrollTrigger: {

@@ -43,6 +43,7 @@ header {
   left: 0;
   top: 0;
   width: 100%;
+ /* background: rgba(0, 0, 0, 0.431); */
 }
 
 .header-row {
@@ -283,16 +284,17 @@ h1 {
   flex: 1;
   color: aliceblue;
   padding-right: 10%;
-  font-size: 26px;
+  font-size: 30px;
   line-height: 35px;
 }
 
 .right-part>div {
-  height: 383px;
+  height: 353px;
 }
 
 h3 {
   margin-bottom: 20px;
+  font-size: 35px;
 }
 
 .right-part div {
