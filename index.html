@@ -8,7 +8,8 @@
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
+  <title>Photo Studio</title>
+  <meta name="description" content="site du photographe Enzo Duweb presentant son travail">
 </head>
 
 <body>
@@ -23,7 +24,7 @@
             <img src="./public/focus.png" alt="logo" />
           </a>
         </div>
-        <button class="menu-toggle" id="menuToggle">
+        <button class="menu-toggle" id="menuToggle" aria-label="menu-icon">
           <svg viewBox="0 0 12 10" class="hamburger" height="40px" width="40px">
             <path d="M10,2 L2,2" class="bar-1"></path>
             <path d="M2,5 L10,5" class="bar-2"></path>
@@ -43,19 +44,19 @@
 
         <nav>
           <ul class="main-menu">
-            <li><a href="#landing">accueil</a></li>
-            <li><a href="#presentation">presentation</a></li>
-            <li><a href="#gallery">realisation</a></li>
-            <li><a href="#footer">contact</a></li>
+            <li><a href="#landing" title="Partie accueil">accueil</a></li>
+            <li><a href="#presentation" title="Partie presentation">presentation</a></li>
+            <li><a href="#gallery" title="Partie gallery">realisation</a></li>
+            <li><a href="#footer" title="Partie contact">contact</a></li>
           </ul>
         </nav>
 
         <div class="header-nav-footer">
           <ul class="social-links">
-            <li><a href="#">facebook</a></li>
-            <li><a href="#">twitter</a></li>
-            <li><a href="#">instagram</a></li>
-            <li><a href="#">linkin</a></li>
+            <li><a href="#" title="lien vers facebook">facebook</a></li>
+            <li><a href="#" title="lien vers twitter">twitter</a></li>
+            <li><a href="#" title="lien vers instagram">instagram</a></li>
+            <li><a href="#" title="lien vers linkin">linkin</a></li>
           </ul>
         </div>
 
@@ -65,7 +66,7 @@
 
     <!-- Landing -->
     <div id="landing">
-      <img src="https://res.cloudinary.com/dos8mey8r/image/upload/v1695839289/photographe/bgMain_j5lquu.jpg" />
+      <img src="https://res.cloudinary.com/dos8mey8r/image/upload/v1695839289/photographe/bgMain_j5lquu.jpg" alt="femme chic et elegante" />
       <p id="name">enzo duweb</p>
       <div class="landing-text">
         <h1>photographe</h1>
@@ -148,8 +149,8 @@
             <span></span>
           </h4>
           <ul>
-            <li><a href="#">a propos de notre compagny</a></li>
-            <li><a href="#">politique de confidentialité</a></li>
+            <li><a href="#" title="a propos de notre compagny">a propos de notre compagny</a></li>
+            <li><a href="#" title="politique de confidentialité">politique de confidentialité</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -158,10 +159,10 @@
             <span></span>
           </h4>
           <ul>
-            <li><a href="#landing">accueil</a></li>
-            <li><a href="#presentation">qui suis-je</a></li>
-            <li><a href="#gallery">gallery</a></li>
-            <li><a href="#footer">contact</a></li>
+            <li><a href="#landing" title="Partie accueil">accueil</a></li>
+            <li><a href="#presentation" title="Partie presentation">presentation</a></li>
+            <li><a href="#gallery" title="Partie gallery">realisation</a></li>
+            <li><a href="#footer" title="Partie contact">contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -170,10 +171,10 @@
             <span></span>
           </h4>
           <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a title="lien vers facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a title="lien vers twitter" href="#"><i class="fab fa-twitter"></i></a>
+            <a title="lien vers instagram" href="#"><i class="fab fa-instagram"></i></a>
+            <a title="lien vers linkin" href="#"><i class="fab fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
