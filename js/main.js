@@ -26,6 +26,16 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) { // need a classic function
+      e.preventDefault(); // Prevent the default behavior of the anchor tag
+      const targetId = this.getAttribute('href').substring(1); // Get the target ID
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+  });
+});
 
 
 /*
@@ -347,4 +357,5 @@ const observer2 = new IntersectionObserver(handleIntersect2, options2);
 underlineFooterSpans.forEach(container => {
   observer2.observe(container);
 });
+
 
