@@ -17,7 +17,6 @@ export const convertDivToSpans = (element, spanClass) => {
 }
   
 
-
 //
 // Grayscale toggle
 //

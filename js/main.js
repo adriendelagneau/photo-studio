@@ -1,13 +1,12 @@
 // Import the necessary modules
-import gsap, { Power2 } from 'gsap'; // GreenSock Animation Platform
+import gsap from 'gsap'; // GreenSock Animation Platform
 import ScrollTrigger from 'gsap/src/ScrollTrigger';
 import Lenis from '@studio-freight/lenis'
-import { photosMode } from './data.js';
 
 import { convertDivToSpans, toggleGrayscale } from './helper.js';
+import { photosMode } from './data.js';
 
 gsap.registerPlugin(ScrollTrigger);
-
 
 /*
   ****** Smooth scroll ********** 
@@ -25,6 +24,98 @@ function raf(time) {
 }
 
 requestAnimationFrame(raf);
+
+
+
+
+/*
+  ****** Menu ********** 
+*/
+
+var menuToggle = document.getElementById("menuToggle");
+
+var menuBar = gsap.timeline();
+
+menuBar.to('.bar-1', {
+  attr: { d: "M8,2 L2,8" },
+  x: 1,
+  duration: 0.5,
+  ease: "Power2.easeInOut"
+}, 'start')
+
+menuBar.to('.bar-2', {
+  autoAlpha: 0,
+  duration: 0.5,
+}, 'start')
+
+menuBar.to('.bar-3', {
+  attr: { d: "M8,8 L2,2" },
+  x: 1,
+  duration: 0.5,
+  ease: "Power2.easeInOut"
+}, 'start')
+
+menuBar.reverse();
+
+
+var tl = gsap.timeline({ paused: true });
+
+tl.to('.fullpage-menu', {
+  zIndex: 100,
+});
+
+tl.to('.fullpage-menu', {
+  duration: 0,
+  display: "block",
+  ease: 'Expo.easeInOut',
+});
+
+tl.from('.menu-bg span', {
+  duration: 1,
+  x: "100%",
+  stagger: 0.1,
+  ease: 'Expo.easeInOut'
+});
+
+tl.from('.main-menu li a', {
+  duration: 1.5,
+  y: "100%",
+  stagger: 0.2,
+  ease: 'Expo.easeInOut'
+}, "-=0.5");
+
+tl.from('.social-links li', {
+  duration: 1,
+  y: "-100%",
+  opacity: 0,
+  stagger: 0.1,
+  ease: 'Expo.easeInOut'
+}, "-=0.5");
+
+// Reverse the tl timeline to its initial state
+tl.reverse();
+
+// Add a click event listener to the menu toggle button
+menuToggle.addEventListener('click',  () => {
+  // Reverse the menuBar timeline's play direction
+  menuBar.reversed(!menuBar.reversed());
+
+  // Reverse the tl timeline's play direction
+  tl.reversed(!tl.reversed());
+});
+
+
+// Add a click event listener to the menu links
+document.querySelectorAll('.main-menu li a').forEach((menuLink) => {
+  menuLink.addEventListener('click', () => {
+    // Reverse the menuBar timeline
+    menuBar.reverse();
+
+    // Reverse the tl timeline
+    tl.reverse();
+  });
+});
+
 
 
 /*
@@ -150,130 +241,6 @@ presentationPart.forEach(container => {
 });
 
 
-/*
-  ****** Footer ********** 
-*/
-
-// Select all elements with the class "right-part div"
-const underlineFooterSpans = document.querySelectorAll('h4 span');
-
-// Options for the Intersection Observer
-let options2 = {
-  root: null,
-  rootMargin: "-150px 0px",
-  threshold: 0.5,
-};
-
-// Function to handle intersection of elements with the viewport
-const handleIntersect2 = (entries) => {
-  entries.forEach((e) => {
-    // If an element is at least 50% visible, add class
-    if (e.isIntersecting) {
-      e.target.classList.add('visible')
-    }
-  });
-};
-
-// Create an Intersection Observer and observe "right-part div" elements
-const observer2 = new IntersectionObserver(handleIntersect2, options2);
-
-underlineFooterSpans.forEach(container => {
-  observer2.observe(container);
-});
-
-
-/*
-  ****** Menu ********** 
-*/
-
-var menuToggle = document.getElementById("menuToggle");
-
-var menuBar = gsap.timeline();
-
-menuBar.to('.bar-1', {
-  attr: { d: "M8,2 L2,8" },
-  x: 1,
-  duration: 0.5,
-  ease: Power2.easeInOut
-}, 'start')
-
-menuBar.to('.bar-2', {
-  autoAlpha: 0,
-  duration: 0.5,
-}, 'start')
-
-menuBar.to('.bar-3', {
-  attr: { d: "M8,8 L2,2" },
-  x: 1,
-  duration: 0.5,
-  ease: Power2.easeInOut
-}, 'start')
-
-menuBar.reverse();
-
-
-var tl = gsap.timeline({ paused: true });
-
-tl.to('.fullpage-menu', {
-  zIndex: 100,
-});
-
-tl.to('.fullpage-menu', {
-  duration: 0,
-  display: "block",
-  ease: 'Expo.easeInOut',
-});
-
-tl.from('.menu-bg span', {
-  duration: 1,
-  x: "100%",
-  stagger: 0.1,
-  ease: 'Expo.easeInOut'
-});
-
-tl.from('.main-menu li a', {
-  duration: 1.5,
-  y: "100%",
-  stagger: 0.2,
-  ease: 'Expo.easeInOut'
-}, "-=0.5");
-
-tl.from('.social-links li', {
-  duration: 1,
-  y: "-100%",
-  opacity: 0,
-  stagger: 0.1,
-  ease: 'Expo.easeInOut'
-}, "-=0.5");
-
-// Reverse the tl timeline to its initial state
-tl.reverse();
-
-// Add a click event listener to the menu toggle button
-menuToggle.addEventListener('click',  () => {
-  // Reverse the menuBar timeline's play direction
-  menuBar.reversed(!menuBar.reversed());
-
-  // Reverse the tl timeline's play direction
-  tl.reversed(!tl.reversed());
-});
-
-
-// Add a click event listener to the menu links
-document.querySelectorAll('.main-menu li a').forEach((menuLink) => {
-  menuLink.addEventListener('click', () => {
-    // Reverse the menuBar timeline
-    menuBar.reverse();
-
-    // Reverse the tl timeline
-    tl.reverse();
-  });
-});
-
-
-
-
-
 
 /*
   ****** Slider ********** 
@@ -347,3 +314,37 @@ const handleIntersect3 = (entries) => {
 // Create and Observe Intersection Observer
 const observer3 = new IntersectionObserver(handleIntersect3, options3);
 observer3.observe(galleryTitle);
+
+
+
+/*
+  ****** Footer ********** 
+*/
+
+// Select all elements with the class "right-part div"
+const underlineFooterSpans = document.querySelectorAll('h4 span');
+
+// Options for the Intersection Observer
+let options2 = {
+  root: null,
+  rootMargin: "-150px 0px",
+  threshold: 0.5,
+};
+
+// Function to handle intersection of elements with the viewport
+const handleIntersect2 = (entries) => {
+  entries.forEach((e) => {
+    // If an element is at least 50% visible, add class
+    if (e.isIntersecting) {
+      e.target.classList.add('visible')
+    }
+  });
+};
+
+// Create an Intersection Observer and observe "right-part div" elements
+const observer2 = new IntersectionObserver(handleIntersect2, options2);
+
+underlineFooterSpans.forEach(container => {
+  observer2.observe(container);
+});
+
