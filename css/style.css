@@ -358,7 +358,7 @@ h3 {
 
 .gallery-title-container {
   font-size: 50px;
-  
+
 }
 
 .gallery-title {
@@ -397,13 +397,13 @@ h3 {
   padding: 0 15px;
 }
 
-.footer-col ul{
+.footer-col ul {
   display: flex;
   flex-direction: column;
 }
 
 .footer-col:nth-child(3) {
-width: 36%;
+  width: 36%;
 }
 
 .footer-col h4 {
@@ -522,15 +522,15 @@ width: 36%;
 
 
   /* Slider */
-  #gallery{
+  #gallery {
     flex-direction: column;
   }
 
 
-.sidePart {
-  margin: 50px 0;
-  align-items: left;
-}
+  .sidePart {
+    margin: 50px 0;
+    align-items: left;
+  }
 
   .gallery-title {
     flex-direction: row;
@@ -543,8 +543,8 @@ width: 36%;
     height: 80%;
     margin: 0 auto;
   }
-  
-  
+
+
   .card {
     width: 350px;
     height: 100%;
@@ -615,6 +615,19 @@ width: 36%;
     flex-direction: column;
   }
 
+  /* Slider*/
+  .sidePart {
+    margin: 30px 0;
+    align-items: left;
+  }
+
+  .gallery-title {
+    font-size: 40px;
+    margin-left: 40px;
+  }
+
+
+
   /* Footer*/
   .row {
     flex-direction: column-reverse;
@@ -624,9 +637,10 @@ width: 36%;
     margin: 20px auto;
     width: 80%;
   }
+
   .footer-col:nth-child(3) {
     width: 80%;
-    }
-    
+  }
+
 
 }

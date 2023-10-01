@@ -96,7 +96,7 @@ tl.from('.social-links li', {
 tl.reverse();
 
 // Add a click event listener to the menu toggle button
-menuToggle.addEventListener('click',  () => {
+menuToggle.addEventListener('click', () => {
   // Reverse the menuBar timeline's play direction
   menuBar.reversed(!menuBar.reversed());
 
@@ -186,8 +186,8 @@ gsap.timeline({
 const skexContainers = document.querySelectorAll(".skew-container");
 // Add mouse enter and leave event listeners to apply grayscale toggle
 skexContainers.forEach((c) => {
-c.addEventListener("mouseenter", (event) => toggleGrayscale(event, ".skew-container img"));
-c.addEventListener("mouseleave", (event) => toggleGrayscale(event, ".skew-container img"));
+  c.addEventListener("mouseenter", (event) => toggleGrayscale(event, ".skew-container img"));
+  c.addEventListener("mouseleave", (event) => toggleGrayscale(event, ".skew-container img"));
 });
 
 
