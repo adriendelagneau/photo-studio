@@ -134,9 +134,9 @@ document.querySelectorAll('.main-menu li a').forEach((menuLink) => {
 
 // Define words with classes for the typing effect
 const wordsWithClasses = [
-  { word: "Mode", class: "art-class" },
-  { word: "Artiste", class: "love-class" },
-  { word: "Evenements", class: "pain-class" },
+  { word: "Model", class: "model-class" },
+  { word: "Artiste", class: "artist-class" },
+  { word: "creatif", class: "creatif-class" },
 ];
 
 let wordIndex = 0;
